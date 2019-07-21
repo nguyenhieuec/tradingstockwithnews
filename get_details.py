@@ -33,6 +33,7 @@ def get_details_from_url(df_to_get):
             row_dict['newsdate'] = newsdate
             row_dict['summary'] = article.summary
             row_dict['keywords'] = article.keywords
+            row_dict['text'] = article.text
             data_dicts.append(row_dict)
         except Exception as e:
 #             logging.error()
@@ -40,11 +41,11 @@ def get_details_from_url(df_to_get):
     return data_dicts
 
 
-from multiprocessing.dummy import Pool as ThreadPool 
-pool = ThreadPool(32)
-results = pool.map(get_details_from_url(news_url))
-pool.close() 
-pool.join()
+# from multiprocessing.dummy import Pool as ThreadPool 
+# pool = ThreadPool(32)
+# results = pool.map(get_details_from_url(news_url))
+# pool.close() 
+# pool.join()
 
-newsfullmarket = pd.DataFrame(results)
+newsfullmarket = pd.DataFrame(get_details_from_url(news_url))
 newsfullmarket.to_csv("newsfullmarket.csv")
