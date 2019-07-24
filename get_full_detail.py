@@ -29,21 +29,23 @@ def get_details_from_url(df_to_get):
             article = Article(url, language='vi')
             article.download()
             article.parse()
-            
+            article.nlp()
             row_dict['newsdate'] = newsdate
             row_dict['fulltext'] = article.text
+            row_dict['summnary'] = article.summary
+            row_dict['keyword'] = article.keywords
             data_dicts.append(row_dict)
-        except Exception as e:
+        except Exception:
 #             logging.error()
             continue
     return data_dicts
 
 
-from multiprocessing.dummy import Pool as ThreadPool 
-pool = ThreadPool(32)
-results = pool.map(get_details_from_url(news_url))
-pool.close() 
-pool.join()
+# from multiprocessing.dummy import Pool as ThreadPool 
+# pool = ThreadPool(32)
+# results = pool.map(get_details_from_url(news_url))
+# pool.close() 
+# pool.join()
 
-newsfullmarket = pd.DataFrame(results)
-newsfullmarket.to_csv("newsfullmarkettext.csv")
+newfull = pd.DataFrame(get_details_from_url(news_url))
+newfull.to_csv('newfull.csv')
