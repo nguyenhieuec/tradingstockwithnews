@@ -1,0 +1,11 @@
+numpy
+pandas
+BeutifulSoup4
+lxml
+urllib3
+tqdm
+requests
+logging
+newspaper3k
+
+#more package will add later.
