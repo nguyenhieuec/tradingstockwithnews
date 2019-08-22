@@ -1,3 +1,4 @@
+tensorflow
 numpy
 pandas
 BeutifulSoup4
@@ -9,3 +10,6 @@ logging
 newspaper3k
 
 #more package will add later.
+## Uncomment this section if need to run BERT AS SERVICE again
+# bert-serving-server
+# bert-serving-client
